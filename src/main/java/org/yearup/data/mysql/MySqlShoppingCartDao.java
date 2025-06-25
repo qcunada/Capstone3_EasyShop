@@ -84,7 +84,15 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
             stmt.setInt(1, quantity);
             stmt.setInt(2, userId);
             stmt.setInt(3, productId);
-            stmt.executeUpdate();
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected == 1){
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No rows affected.");
+
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -92,19 +100,20 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
 
     @Override
     public void clearCart(int userId) {
-        String sql = "DELETE FROM shopping_cart WHERE user_id = ?";
+        String query = "DELETE FROM shopping_cart WHERE user_id = ?";
 
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (
+                Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, userId);
             int rowsAffected = stmt.executeUpdate();
 
-            if (rowsAffected == 1) {
-                System.out.println("Row deleted.");;
+            if (rowsAffected > 0) {
+                System.out.println("Cart cleared.");;
             } else {
-                System.out.println("No row affected.");
+                System.out.println("Cart already empty.");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

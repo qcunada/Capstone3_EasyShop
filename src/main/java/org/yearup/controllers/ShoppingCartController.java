@@ -57,6 +57,7 @@ public class ShoppingCartController
     }
     // add a POST method to add a product to the cart - the url should be
     // https://localhost:8080/cart/products/15 (15 is the productId to be added
+
     @PostMapping("cart/products/{productId}")
     public void addProduct(Principal principal, @PathVariable int productId) {
         try {
@@ -82,11 +83,12 @@ public class ShoppingCartController
         // https://localhost:8080/cart/products/15 (15 is the productId to be updated)
         // the BODY should be a ShoppingCartItem - quantity is the only value that will be updated
 
-     @DeleteMapping("cart/{id}")
+     @DeleteMapping("cart")
      @ResponseStatus(HttpStatus.NO_CONTENT)
-        public void clearCart(@PathVariable int id) {
+        public void clearCart(Principal principal) {
             try {
-                shoppingCartDao.clearCart(id);
+                int userId = getUserId(principal);
+                shoppingCartDao.clearCart(userId);
             } catch (ResponseStatusException ex) {
                 throw ex;
 
@@ -94,6 +96,14 @@ public class ShoppingCartController
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.", ex);
 
         }
+    }
+    private int getUserId(Principal principal) {
+        String userName = principal.getName();
+        User user = userDao.getByUserName(userName);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found.");
+        }
+        return user.getId();
     }
 
     }
