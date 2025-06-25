@@ -40,7 +40,7 @@ public class AuthenticationController {
         this.profileDao = profileDao;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+   @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
@@ -64,8 +64,7 @@ public class AuthenticationController {
         }
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping("/register")
     public ResponseEntity<User> register(@Valid @RequestBody RegisterUserDto newUser) {
 
         try {
@@ -85,8 +84,8 @@ public class AuthenticationController {
             return new ResponseEntity<>(user, HttpStatus.CREATED);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad: " + e.getClass().getSimpleName() + " - " + e.getMessage());
         }
     }
 

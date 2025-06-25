@@ -87,10 +87,10 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, productId);
 
-            ResultSet row = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
 
-            if (row.next()) {
-                return mapRow(row);
+            if (resultSet.next()) {
+                return mapRow(resultSet);
             }
         }
         catch (SQLException e) {
