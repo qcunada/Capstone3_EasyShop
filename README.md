@@ -48,3 +48,5 @@ A Java Spring Boot RESTful API for an online store. Features user authentication
 - `GET /profile` – Get current user's profile
 - `POST /profile` – Create profile
 - `PUT /profile` – Update profile
+
+<img width="1083" alt="Image" src="https://github.com/user-attachments/assets/3de80747-25e5-4a01-aff6-f6b5ab33b75b" />
