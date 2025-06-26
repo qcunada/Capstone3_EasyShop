@@ -18,12 +18,15 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 
     @Override
     public List<Product> search(Integer categoryId, BigDecimal minPrice, BigDecimal maxPrice, String color) {
+
         List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM products \n " +
                 "WHERE (category_id = ? OR ? = -1) " +
                 "   AND (price >= ? OR ? = -1) " +
-                "   AND (price <= ? OR ? = -1) " +
+                "   AND (price <= ? OR ? = -1) " + //added max price query
                 "   AND (color = ? OR ? = '') ";
+
+
 
         categoryId = categoryId == null ? -1 : categoryId;
         minPrice = minPrice == null ? new BigDecimal("-1") : minPrice;
@@ -41,6 +44,7 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
             statement.setBigDecimal(6, maxPrice);
             statement.setString(7, color);
             statement.setString(8, color);
+            // added max price statement for parameters 5 & 6.
 
             ResultSet row = statement.executeQuery();
 
@@ -76,7 +80,6 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return products;
     }
 

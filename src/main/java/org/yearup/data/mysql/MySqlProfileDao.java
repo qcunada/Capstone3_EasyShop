@@ -38,7 +38,8 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao {
             ps.executeUpdate();
 
             return profile;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -56,14 +57,15 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao {
             if (row.next()) {
                 return mapRow(row);
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return null;
     }
 
     @Override
-    public void update(int id, Profile profile) {
+    public void update(Profile profile) {
         String sql = "UPDATE profiles" +
                 "   SET first_name = ? " +
                 "   , last_name = ? " +
@@ -84,14 +86,15 @@ public class MySqlProfileDao extends MySqlDaoBase implements ProfileDao {
             statement.setString(5, profile.getAddress());
             statement.setString(6, profile.getCity());
             statement.setString(7, profile.getState());
+            statement.setInt(8, profile.getUserId());
 
             statement.executeUpdate();
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
     protected static Profile mapRow(ResultSet row) throws SQLException {
         int userId = row.getInt("user_id");
         String firstName = row.getString("first_name");
