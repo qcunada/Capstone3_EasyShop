@@ -54,9 +54,32 @@ A Java Spring Boot RESTful API for an online store. Features user authentication
 
 ### Features in Front End
 
-- Choose category
+### USER LOGIN
 
-![Image](https://github.com/user-attachments/assets/20cb3786-34b9-4341-a10b-0c8f90ee2cb3)
+- User need user login to start shopping
 
+### FILTERING
+
+- Filter through their `product categories`
+
+![Image](https://github.com/user-attachments/assets/8e942593-5541-4bfa-9934-3e1a6bdcd50b)
+
+- Filter through between `minimum price and maximum price`
+
+![Image](https://github.com/user-attachments/assets/49b0829a-6bf1-4f58-9655-e86d28d042e1)
+
+- Filter through the `products color`
+
+![Image](https://github.com/user-attachments/assets/5bfe7498-0e7e-428d-950a-6aaa5b047179)
+
+
+----
 ### Postman tests
+
+- easyshop-solo
+
 <img width="1083" alt="Image" src="https://github.com/user-attachments/assets/3de80747-25e5-4a01-aff6-f6b5ab33b75b" />
+
+- easyshop-solo-optional
+
+<img width="1072" alt="Image" src="https://github.com/user-attachments/assets/38d43a12-3f28-401c-8af0-35599555bed1" />
