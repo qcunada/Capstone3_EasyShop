@@ -49,4 +49,14 @@ A Java Spring Boot RESTful API for an online store. Features user authentication
 - `POST /profile` – Create profile
 - `PUT /profile` – Update profile
 
+---
+
+
+### Features in Front End
+
+- Choose category
+
+![Image](https://github.com/user-attachments/assets/20cb3786-34b9-4341-a10b-0c8f90ee2cb3)
+
+### Postman tests
 <img width="1083" alt="Image" src="https://github.com/user-attachments/assets/3de80747-25e5-4a01-aff6-f6b5ab33b75b" />
